@@ -1,0 +1,50 @@
+
+services:
+  db_male:
+    image: mysql
+    env_file: ./.env
+    environment:
+      MYSQL_ROOT_PASSWORD: $ROOT_PASSWORD
+      MYSQL_DATABASE: $MALE_DB
+    ports:
+      - $LOCAL_PORT_M:$DOCKER_PORT
+    volumes:
+      # - db_data:/var/lib/mysql
+      - ./sql/male:/docker-entrypoint-initdb.d
+
+  db_female:
+    image: mysql
+    env_file: ./.env
+    environment:
+      MYSQL_ROOT_PASSWORD: $ROOT_PASSWORD
+      MYSQL_DATABASE: $FEMALE_DB
+    ports:
+      - $LOCAL_PORT_F:$DOCKER_PORT
+    volumes:
+      # - db_data:/var/lib/mysql
+      - ./sql/female:/docker-entrypoint-initdb.d
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      DB_HOST_F: db_female
+      DB_HOST_M: db_male
+      DB_MALE_NAME: fifa_male_players
+      DB_FEMALE_NAME: fifa_female_players
+      DB_USER: root
+      DB_PASSWORD: admindb01
+      DB_PORT: 3306
+      JWT_SECRET: secret
+    ports:
+      - "3000:3000"
+    # depends_on:
+    #   - db_male
+    #   - db_female
+    # links:
+    #   - db_male
+    #   - db_female
+
+# volumes:
+#   db_data:
