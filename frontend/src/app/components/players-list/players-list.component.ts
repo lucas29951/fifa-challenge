@@ -3,6 +3,7 @@ import { PlayerService } from '../../services/player.service';
 import { Player } from '../../models/Player.model';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-players-list',
@@ -21,8 +22,12 @@ export class PlayersListComponent implements OnInit {
   }
 
   cargarJugadores() {
-    this.playerService.getMalePlayers().subscribe(data => {
-      this.players = data;
+    forkJoin({
+      male: this.playerService.getMalePlayers(),
+      female: this.playerService.getFemalePlayers()
+    }).subscribe(({ male, female}) => {
+      this.players = [...male, ...female];
+      this.players.sort((a,b) => a.long_name.localeCompare(b.long_name));
     });
   }
 }

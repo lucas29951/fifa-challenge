@@ -1,10 +1,38 @@
 <h2>Jugadores</h2>
-<ul>
-  <li *ngFor="let jugador of players">
-    <img [src]="jugador.player_face_url" alt="Foto de {{ jugador.long_name }}" />
-    <h3>{{ jugador.long_name }}</h3>
-    <p>Club: {{ jugador.club_name }}</p>
-    <p>País: {{ jugador.nationality_name }}</p>
-    <p>Edad: {{ jugador.age }}</p>
-  </li>
-</ul>
+<div class="players-grid">
+  <div *ngFor="let player of players" class="card">
+    <div class="content">
+      <div class="back">
+        <div class="back-content">
+          <img [src]="player.player_face_url" alt="Foto de {{ player.long_name }}" />
+          <strong class="text-center fs-6 mx-1">{{ player.long_name }}</strong>
+        </div>
+      </div>
+      <div class="front">
+
+        <div class="img">
+          <div class="circle">
+          </div>
+          <div class="circle" id="right">
+          </div>
+          <div class="circle" id="bottom">
+          </div>
+        </div>
+
+        <div class="front-content">
+          <small class="badge">{{ player.club_name || 'NN' }}</small>
+          <div class="description">
+            <div class="title">
+              <p class="title">
+                <strong>{{ player.long_name }}</strong>
+              </p>
+            </div>
+            <p class="card-footer">
+              Age: {{ player.age }} &nbsp; | &nbsp; Nationality: {{ player.nationality_name }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
