@@ -69,7 +69,7 @@ exports.getPlayersPaginated = async (req, res) => {
     const limitInt = parseInt(limit);
     const offset = (parseInt(page) - 1) * limitInt;
 
-    const { rows: players } = await malePlayer.findAndCountAll({
+    const { rows: players } = await femalePlayer.findAndCountAll({
       limit: limitInt,
       offset
     });
