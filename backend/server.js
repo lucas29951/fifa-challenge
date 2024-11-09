@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const cors = require('cors');
 const { sequelizeFemale, sequelizeMale } = require('./config/database');
 const femalePlayerRoutes = require('./routes/femalePlayerRoutes');
 const malePlayerRoutes = require('./routes/malePlayerRoutes');
@@ -7,6 +8,7 @@ const app = express();
 
 dotenv.config();
 app.use(express.json());
+app.use(cors());
 
 app.use('/api/players/male', malePlayerRoutes);
 app.use('/api/players/female', femalePlayerRoutes);
