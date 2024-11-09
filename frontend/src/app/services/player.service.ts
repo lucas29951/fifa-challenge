@@ -8,8 +8,13 @@ import { Player } from '../models/Player.model';
 })
 export class PlayerService {
   private apiUrl = 'http://localhost:3000/api/players';
+  private apiMale = 'http://localhost:3000/api/players/male';
 
   constructor(private http:HttpClient) { }
+
+  getMalePlayers(): Observable<Player[]> {
+    return this.http.get<Player[]>(`${this.apiMale}/pagination?page=1&limit=10`);
+  }
 
   getJugadores(genero: string): Observable<Player[]> {
     const url = genero === 'hombres' ? this.apiUrl+'/male' : this.apiUrl+'/female';
