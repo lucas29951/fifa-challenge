@@ -1,10 +1,10 @@
-<h2>Jugadores {{ genero }}</h2>
+<h2>Jugadores</h2>
 <ul>
-  <li *NgFor="let jugador of jugadores">
+  <li *ngFor="let jugador of players">
     <img [src]="jugador.player_face_url" alt="Foto de {{ jugador.long_name }}" />
     <h3>{{ jugador.long_name }}</h3>
     <p>Club: {{ jugador.club_name }}</p>
     <p>País: {{ jugador.nationality_name }}</p>
-    <p>Overall: {{ jugador.overall }}</p>
+    <p>Edad: {{ jugador.age }}</p>
   </li>
 </ul>
