@@ -12,7 +12,4 @@ export class HomeComponent {
 
   constructor(private router: Router) {}
 
-  selectGenero(genero: 'hombres' | 'mujeres') {
-    this.router.navigate(['/players', genero]);
-  }
 }
