@@ -14,5 +14,6 @@ export interface Player {
     preferred_foot?: string;
     skill_moves?: number;
     weak_foot?: number;
+    genre?: string;
   }
   
