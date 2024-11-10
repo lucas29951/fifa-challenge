@@ -26,8 +26,8 @@ export class PlayerService {
   }
 
   getJugadorById(genero: string, id: number): Observable<Player> {
-    const url = genero === 'hombres' ? this.apiUrl+'/male' : this.apiUrl+'/female';
-    return this.http.get<Player>(`${url}/id/${id}`);
+    // const url = genero === 'hombres' ? this.apiUrl+'/male' : this.apiUrl+'/female';
+    return this.http.get<Player>(`${this.apiUrl}/${genero}/id/${id}`);
   }
 
   getJugadoresPorClub(genero: string, club: string): Observable<Player[]> {
