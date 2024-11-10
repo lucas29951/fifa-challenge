@@ -31,6 +31,7 @@
               Age: {{ player.age }} &nbsp; | &nbsp; Nationality: {{ player.nationality_name }}
             </p>
           </div>
+          <a [routerLink]="['/player', player.genre, player.id]" class="btn">Ver detalles</a>
         </div>
       </div>
     </div>

@@ -4,11 +4,12 @@ import { Player } from '../../models/Player.model';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { forkJoin } from 'rxjs';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-players-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './players-list.component.html',
   styleUrl: './players-list.component.css'
 })
@@ -23,10 +24,13 @@ export class PlayersListComponent implements OnInit {
 
   cargarJugadores() {
     forkJoin({
-      male: this.playerService.getMalePlayers(),
-      female: this.playerService.getFemalePlayers()
-    }).subscribe(({ male, female}) => {
-      this.players = [...male, ...female];
+      males: this.playerService.getMalePlayers(),
+      females: this.playerService.getFemalePlayers()
+    }).subscribe(({ males, females}) => {
+      this.players = [
+        ...males.map(player => ({ ...player, genre: 'male' })),
+        ...females.map(player => ({ ...player, genre: 'female' }))
+      ];
       this.players.sort((a,b) => a.long_name.localeCompare(b.long_name));
     });
   }
