@@ -9,8 +9,11 @@ services:
     ports:
       - $LOCAL_PORT_M:$DOCKER_PORT
     volumes:
-      # - db_data:/var/lib/mysql
       - ./sql/male:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      retries: 5
 
   db_female:
     image: mysql
@@ -21,13 +24,19 @@ services:
     ports:
       - $LOCAL_PORT_F:$DOCKER_PORT
     volumes:
-      # - db_data:/var/lib/mysql
       - ./sql/female:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      retries: 5
 
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
     environment:
       DB_HOST_F: db_female
       DB_HOST_M: db_male
@@ -39,12 +48,8 @@ services:
       JWT_SECRET: secret
     ports:
       - "3000:3000"
-    # depends_on:
-    #   - db_male
-    #   - db_female
-    # links:
-    #   - db_male
-    #   - db_female
-
-# volumes:
-#   db_data:
+    depends_on:
+      db_male:
+        condition: service_healthy
+      db_female:
+        condition: service_healthy
