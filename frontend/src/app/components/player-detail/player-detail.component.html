@@ -5,9 +5,12 @@
         'background-position': 'center',
         'background-repeat': 'no-repeat',
         'background-position-y': '5px' }">
+
         <div class="player-name"><h2>{{ player.long_name }}</h2></div>
         <div class="position"><p>{{ player.player_positions }}</p></div>
         <div class="club"><p>{{ player.club_name || 'NN' }}</p></div>
         <div class="number"><p>{{ player.age }}</p></div>
     </div>
+    
+    <button class="edit-btn" (click)="editarJugador()">✏️ Editar</button>
 </div> 
