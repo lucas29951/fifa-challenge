@@ -97,3 +97,16 @@ exports.getPlayersByLastVersion = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+exports.updateFemalePlayer = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const player = await femalePlayer.findByPk(id);
+    if (!player) return res.status(404).json({ message: 'Player not found.' });
+
+    await player.update(req.body);
+    res.json({ message: 'Player updated successfully!', player });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
