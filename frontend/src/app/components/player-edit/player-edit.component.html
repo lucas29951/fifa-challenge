@@ -1,1 +1,19 @@
-<p>player-edit works!</p>
+<div class="container mt-4 text-light">
+  <h2>Editar jugador</h2>
+
+  <form (ngSubmit)="onSubmit()">
+    <label>Nombre:</label>
+    <input class="form-control" [(ngModel)]="player.long_name" name="long_name" />
+
+    <label>Posiciones:</label>
+    <input class="form-control" [(ngModel)]="player.player_positions" name="player_positions" />
+
+    <label>Club:</label>
+    <input class="form-control" [(ngModel)]="player.club_name" name="club_name" />
+
+    <label>Edad:</label>
+    <input class="form-control" [(ngModel)]="player.age" name="age" />
+
+    <button type="submit" class="btn btn-success mt-3">Guardar cambios</button>
+  </form>
+</div>
