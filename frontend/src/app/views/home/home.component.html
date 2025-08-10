@@ -1,0 +1,44 @@
+<div class="home-container text-light">
+  <!-- Banner de bienvenida -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Bienvenido a <span>FIFA Challenge</span></h1>
+      <p>Explora, filtra y gestiona jugadores de FIFA en todas sus versiones.</p>
+      <a routerLink="/players" class="btn-primary">Ver Jugadores</a>
+    </div>
+  </section>
+
+  <!-- Accesos rápidos -->
+  <section class="quick-links">
+    <h2>Explora Rápidamente</h2>
+    <div class="cards">
+      <div class="card" routerLink="/players/hombres">
+        <h3>Jugadores Hombres</h3>
+        <p>Explora la base de datos completa de jugadores masculinos.</p>
+      </div>
+      <div class="card" routerLink="/players/mujeres">
+        <h3>Jugadoras Mujeres</h3>
+        <p>Descubre las jugadoras destacadas y sus estadísticas.</p>
+      </div>
+      <div class="card" routerLink="/ranking">
+        <h3>Ranking FIFA</h3>
+        <p>Consulta a los mejores jugadores por puntuación general.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Jugadores destacados -->
+  <section class="featured">
+    <h2>Jugadores Destacados</h2>
+    <div class="player-grid">
+      <div class="player-card" *ngFor="let player of featuredPlayers">
+        <div class="player-img" [ngStyle]="{'background-image': 'url(' + player.player_face_url + ')'}"></div>
+        <div class="player-info">
+          <h3>{{ player.long_name }}</h3>
+          <p>{{ player.player_positions }}</p>
+          <span>{{ player.club_name || 'Club desconocido' }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
