@@ -11,5 +11,6 @@ router.get('/country/:country', femalePlayerController.getPlayersByCountry);
 router.get('/pagination', femalePlayerController.getPlayersPaginated);
 router.get('/last-version', femalePlayerController.getPlayersByLastVersion);
 router.put('/:id', femalePlayerController.updateFemalePlayer);
+router.get('/highlights', femalePlayerController.getHighlightsPlayers);
 
 module.exports = router;
