@@ -63,7 +63,7 @@ exports.getPlayersByCountry = async (req, res) => {
 };
 
 exports.getPlayersPaginated = async (req, res) => {
-  const { page = 1, limit = 10 } = req.query;
+  const { page, limit } = req.query;
 
   try {
     const limitInt = parseInt(limit);
@@ -106,6 +106,19 @@ exports.updateFemalePlayer = async (req, res) => {
 
     await player.update(req.body);
     res.json({ message: 'Player updated successfully!', player });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.getHighlightsPlayers = async (req, res) => {
+  try {
+    const players = await femalePlayer.findAll({
+      order: [['overall', 'DESC']],
+      limit: 10
+    });
+
+    res.json(players);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
