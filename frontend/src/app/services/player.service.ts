@@ -12,12 +12,12 @@ export class PlayerService {
 
   constructor(private http:HttpClient) { }
 
-  getMalePlayers(): Observable<Player[]> {
-    return this.http.get<Player[]>(`${this.apiUrl}/male/pagination?page=1&limit=10`);
+  getMalePlayers(page: number, limit: number): Observable<Player[]> {
+    return this.http.get<Player[]>(`${this.apiUrl}/male/pagination?page=${page}&limit=${limit}`);
   }
 
-  getFemalePlayers(): Observable<Player[]> {
-    return this.http.get<Player[]>(`${this.apiUrl}/female/pagination?page=1&limit=10`);
+  getFemalePlayers(page: number, limit: number): Observable<Player[]> {
+    return this.http.get<Player[]>(`${this.apiUrl}/female/pagination?page=${page}&limit=${limit}`);
   }
 
   getJugadores(genero: string): Observable<Player[]> {
