@@ -42,4 +42,9 @@ export class PlayerService {
   updateJugador(genero: string, id: number, data: any) {
     return this.http.put(`${this.apiUrl}/${genero}/${id}`, data);
   }
+
+  getJugadoresDestacados(genero: string): Observable<Player[]> {
+    const url = genero === 'hombres' ? this.apiUrl+'/male' : this.apiUrl+'/female';
+    return this.http.get<Player[]>(`${url}/highlights`);
+  }
 }
