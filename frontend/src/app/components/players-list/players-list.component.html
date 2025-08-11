@@ -1,3 +1,5 @@
+<app-filters (filtersChanged)="loadPlayers($event)"></app-filters>
+
 <h2>Jugadores</h2>
 <div class="players-grid">
   <div *ngFor="let player of players" class="card">
