@@ -47,4 +47,19 @@ export class PlayerService {
     const url = genero === 'hombres' ? this.apiUrl+'/male' : this.apiUrl+'/female';
     return this.http.get<Player[]>(`${url}/highlights`);
   }
+
+  getFilteredPlayers(filters: any) {
+    let params: any = {};
+
+    if (filters.gender) params.gender = filters.gender;
+    if (filters.club) params.club = filters.club;
+    if (filters.country) params.country = filters.country;
+    if (filters.minOverall) params.minOverall = filters.minOverall;
+    if (filters.maxOverall) params.maxOverall = filters.maxOverall;
+    if (filters.position) params.position = filters.position;
+    if (filters.page) params.page = filters.page;
+    if (filters.limit) params.limit = filters.limit;
+
+    return this.http.get<Player[]>(`${this.apiUrl}/${filters.gender}/filter`, { params });
+  }
 }
