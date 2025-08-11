@@ -4,6 +4,7 @@ const cors = require('cors');
 const { sequelizeFemale, sequelizeMale } = require('./config/database');
 const femalePlayerRoutes = require('./routes/femalePlayerRoutes');
 const malePlayerRoutes = require('./routes/malePlayerRoutes');
+const authRoutes = require('./routes/authRoutes');
 const app = express();
 
 dotenv.config();
@@ -12,6 +13,7 @@ app.use(cors());
 
 app.use('/api/players/male', malePlayerRoutes);
 app.use('/api/players/female', femalePlayerRoutes);
+app.use('/api/auth', authRoutes);
 
 sequelizeMale.authenticate()
   .then(() => console.log('## Connected to the database of male players ##'))
