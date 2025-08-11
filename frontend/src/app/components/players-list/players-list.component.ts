@@ -5,11 +5,12 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { forkJoin } from 'rxjs';
 import { RouterLink } from '@angular/router';
+import { FiltersComponent } from "../filters/filters.component";
 
 @Component({
   selector: 'app-players-list',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, FiltersComponent],
   templateUrl: './players-list.component.html',
   styleUrl: './players-list.component.css'
 })
@@ -18,6 +19,7 @@ export class PlayersListComponent implements OnInit {
   currentPage = 1;
   totalPages = 1;
   limit = 10;
+  currentFilters: any = {};
 
   constructor(
     private playerService: PlayerService, 
@@ -39,6 +41,16 @@ export class PlayersListComponent implements OnInit {
       ];
       this.players.sort((a,b) => a.long_name.localeCompare(b.long_name));
       this.totalPages = Math.ceil(this.players.length / this.limit);
+    });
+  }
+
+  loadPlayers(filters?: any) {
+    if (filters) this.currentFilters = filters;
+    this.playerService.getFilteredPlayers(this.currentFilters).subscribe(res => {
+      this.players = [
+        ...res.map(player => ({ ...player, genre: 'male' }))
+      ];
+      //this.players.sort((a,b) => a.long_name.localeCompare(b.long_name));
     });
   }
 
