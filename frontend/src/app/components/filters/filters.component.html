@@ -1,22 +1,21 @@
-<!-- players-filters.component.html -->
 <div class="filters">
-  <select [(ngModel)]="filters.gender">
+  <select class="form-select-sm" [(ngModel)]="filters.gender">
     <option value="">Todos</option>
     <option value="male">Hombres</option>
     <option value="female">Mujeres</option>
   </select>
 
-  <input type="text" placeholder="Club" (ngModel)="filters.club">
-  <input type="text" placeholder="País" (ngModel)="filters.country">
-  <input type="number" placeholder="Overall mínimo" (ngModel)="filters.minOverall">
-  <input type="number" placeholder="Overall máximo" (ngModel)="filters.maxOverall">
-  <input type="text" placeholder="Posición" (ngModel)="filters.position">
+  <input class="form-control-sm" type="text" placeholder="Club" (ngModel)="filters.club">
+  <input class="form-control-sm" type="text" placeholder="País" (ngModel)="filters.country">
+  <input class="form-control-sm" type="number" placeholder="Overall mínimo" (ngModel)="filters.minOverall">
+  <input class="form-control-sm" type="number" placeholder="Overall máximo" (ngModel)="filters.maxOverall">
+  <input class="form-control-sm" type="text" placeholder="Posición" (ngModel)="filters.position">
 
-  <button (click)="applyFilters()">Filtrar</button>
+  <button class="btn btn-primary py-1" (click)="applyFilters()">Filtrar</button>
 </div>
 
 <div class="pagination">
-  <button (click)="prevPage()" [disabled]="filters.page === 1">Anterior</button>
+  <button class="btn btn-outline-light py-1" (click)="prevPage()" [disabled]="filters.page === 1">Anterior</button>
   <span>Página {{ filters.page }}</span>
-  <button (click)="nextPage()">Siguiente</button>
+  <button class="btn btn-outline-light py-1" (click)="nextPage()">Siguiente</button>
 </div>
