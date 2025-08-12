@@ -31,10 +31,14 @@
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
-        <form class="d-flex">
+        <form class="d-flex" *ngIf="!isLoggedIn">
           <button class="btn btn-outline-light px-4 py-1 me-3" routerLink="/login">Sign In</button>
           <button class="btn btn-outline-light px-4 py-1" routerLink="/register">Sign Up</button>
         </form>
+        <div class="d-flex align-items-center text-white" *ngIf="isLoggedIn">
+          <span class="me-3">Hola, {{ userName || "Usuario" }}</span>
+          <button class="btn btn-outline-danger px-4 py-1" (click)="logout()">Logout</button>
+        </div>
       </div>
     </div>
   </nav>
