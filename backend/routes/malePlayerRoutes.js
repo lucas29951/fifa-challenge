@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const malePlayerController = require('../controllers/malePlayerController');
 
-router.post('/', malePlayerController.createMalePlayer);
+//router.post('/', malePlayerController.createMalePlayer);
 router.get('/', malePlayerController.getMalePlayers);
 router.get('/id/:id', malePlayerController.getPlayerByID);
 router.get('/name/:name', malePlayerController.getPlayerByName);
@@ -13,5 +13,6 @@ router.get('/last-version', malePlayerController.getPlayersByLastVersion);
 router.put('/:id', malePlayerController.updateMalePlayer);
 router.get('/highlights', malePlayerController.getHighlightsPlayers);
 router.get('/filter', malePlayerController.getPlayersFiltered);
+router.post('/', malePlayerController.createPlayer);
 
 module.exports = router;
