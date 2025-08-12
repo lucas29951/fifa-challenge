@@ -1,0 +1,84 @@
+<div class="container mt-4 text-light">
+  <h2>Crear Jugador</h2>
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+  <form (ngSubmit)="crear()">
+    <div class="mb-2">
+      <label>Género</label>
+      <select [(ngModel)]="player.genero" name="genero" class="form-select">
+        <option value="male">Hombre</option>
+        <option value="female">Mujer</option>
+      </select>
+    </div>
+
+    <div class="mb-2">
+      <label>Nombre</label>
+      <input class="form-control" [(ngModel)]="player.long_name" name="long_name" />
+    </div>
+
+    <div class="mb-2">
+      <label>Posiciones</label>
+      <input class="form-control" [(ngModel)]="player.player_positions" name="player_positions" />
+    </div>
+
+    <div class="mb-2">
+      <label>Club</label>
+      <input class="form-control" [(ngModel)]="player.club_name" name="club_name" />
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <label>País</label>
+        <input class="form-control" [(ngModel)]="player.nationality_name" name="nationality_name" />
+      </div>
+      <div class="col">
+        <label>Overall</label>
+        <input type="number" class="form-control" [(ngModel)]="player.overall" name="overall" />
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col">
+        <label>Edad</label>
+        <input type="number" class="form-control" [(ngModel)]="player.age" name="age" />
+      </div>
+      <div class="col">
+        <label>Pace</label>
+        <input type="number" class="form-control" [(ngModel)]="player.pace" name="pace" />
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col">
+        <label>Shooting</label>
+        <input type="number" class="form-control" [(ngModel)]="player.shooting" name="shooting" />
+      </div>
+      <div class="col">
+        <label>Passing</label>
+        <input type="number" class="form-control" [(ngModel)]="player.passing" name="passing" />
+      </div>
+      <div class="col">
+        <label>Dribbling</label>
+        <input type="number" class="form-control" [(ngModel)]="player.dribbling" name="dribbling" />
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <div class="col">
+        <label>Defending</label>
+        <input type="number" class="form-control" [(ngModel)]="player.defending" name="defending" />
+      </div>
+      <div class="col">
+        <label>Physic</label>
+        <input type="number" class="form-control" [(ngModel)]="player.physic" name="physic" />
+      </div>
+    </div>
+
+    <div class="mt-3 d-flex gap-2">
+      <!-- <button type="button" class="btn btn-secondary" (click)="crearComoYo()">Crear como yo</button> -->
+      <button type="submit" class="btn btn-primary w-100 mt-3" [disabled]="saving">
+        {{ saving ? 'Creando...' : 'Crear jugador' }}
+      </button>
+    </div>
+  </form>
+</div>
