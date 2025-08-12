@@ -62,4 +62,8 @@ export class PlayerService {
 
     return this.http.get<Player[]>(`${this.apiUrl}/${filters.gender}/filter`, { params });
   }
+
+  createPlayer(data: any) {
+    return this.http.post<any>(this.apiUrl, data);
+  }
 }
