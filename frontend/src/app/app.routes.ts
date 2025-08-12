@@ -5,6 +5,7 @@ import { PlayerDetailComponent } from './components/player-detail/player-detail.
 import { PlayerEditComponent } from './components/player-edit/player-edit.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { PlayerCreateComponent } from './components/player-create/player-create.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -12,5 +13,6 @@ export const routes: Routes = [
     { path: 'player/:genre/:id', component: PlayerDetailComponent },
     { path: 'player/:genre/:id/edit', component: PlayerEditComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent }
+    { path: 'register', component: RegisterComponent },
+    { path: 'create', component: PlayerCreateComponent }
 ];
