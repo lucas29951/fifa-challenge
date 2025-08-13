@@ -5,7 +5,7 @@
   <form (ngSubmit)="crear()">
     <div class="mb-2">
       <label>Género</label>
-      <select [(ngModel)]="player.genero" name="genero" class="form-select">
+      <select [(ngModel)]="player.genre" name="genero" class="form-select">
         <option value="male">Hombre</option>
         <option value="female">Mujer</option>
       </select>
@@ -14,6 +14,17 @@
     <div class="mb-2">
       <label>Nombre</label>
       <input class="form-control" [(ngModel)]="player.long_name" name="long_name" />
+    </div>
+
+    <div class="row mt-2">
+      <div class="col">
+        <label>Version</label>
+        <input class="form-control" [(ngModel)]="player.fifa_version" name="fifa_version"/>
+      </div>
+      <div class="col">
+        <label>Update</label>
+        <input class="form-control" [(ngModel)]="player.fifa_update" name="fifa_update"/>
+      </div>
     </div>
 
     <div class="mb-2">
@@ -26,6 +37,11 @@
       <input class="form-control" [(ngModel)]="player.club_name" name="club_name" />
     </div>
 
+    <div class="mb-2">
+      <label>Foto</label>
+      <input class="form-control" [(ngModel)]="player.player_face_url" name="player_face_url"/>
+    </div>
+
     <div class="row">
       <div class="col">
         <label>País</label>
@@ -35,6 +51,11 @@
         <label>Overall</label>
         <input type="number" class="form-control" [(ngModel)]="player.overall" name="overall" />
       </div>
+    </div>
+
+    <div class="mb-2">
+      <label>Potencial</label>
+      <input type="number" class="form-control" [(ngModel)]="player.potential" name="potential" />
     </div>
 
     <div class="row mt-2">
