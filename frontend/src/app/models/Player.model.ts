@@ -15,5 +15,13 @@ export interface Player {
     skill_moves?: number;
     weak_foot?: number;
     genre?: string;
+    potential: number;
+    fifa_update: string;
+    pace: number;
+    shooting: number;
+    passing: number;
+    dribbling: number;
+    defending: number;
+    physic: number;
   }
   
