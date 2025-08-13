@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PlayerService } from '../../services/player.service';
 import { Router } from '@angular/router';
+import { Player } from '../../models/Player.model';
 
 @Component({
   selector: 'app-player-create',
@@ -12,20 +13,25 @@ import { Router } from '@angular/router';
   styleUrl: './player-create.component.css'
 })
 export class PlayerCreateComponent {
-  player: any = {
-    genero: 'hombre',
+  player: Player = {
+    genre: 'male',
     long_name: '',
     player_positions: '',
     club_name: '',
     nationality_name: '',
-    overall: null,
-    age: null,
-    pace: null,
-    shooting: null,
-    passing: null,
-    dribbling: null,
-    defending: null,
-    physic: null
+    overall: 0,
+    age: 0,
+    pace: 0,
+    shooting: 0,
+    passing: 0,
+    dribbling: 0,
+    defending: 0,
+    physic: 0,
+    fifa_version: '',
+    fifa_update: '',
+    player_face_url: '',
+    potential: 0,
+    id: 0
   };
 
   saving = false;
@@ -39,13 +45,14 @@ export class PlayerCreateComponent {
   crear() {
     this.saving = true;
     this.error = null;
-    this.playerService.createPlayer(this.player).subscribe({
+    console.log('Player: ', this.player);
+    this.playerService.create(this.player).subscribe({
       next: (res) => {
         this.saving = false;
-        const nuevo = res.jugador;
+        const nuevo = res;
         console.log("Nuevo: ", nuevo);
         if (nuevo && nuevo.id) {
-          this.router.navigate([`/${nuevo.genre}/${nuevo.id}`]);
+          this.router.navigate([`/players/${this.player.genre}/${nuevo.id}`]);
         } else {
           this.router.navigate(['/players']);
         }
