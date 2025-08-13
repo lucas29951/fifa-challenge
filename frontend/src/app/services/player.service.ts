@@ -66,4 +66,8 @@ export class PlayerService {
   createPlayer(data: any) {
     return this.http.post<any>(this.apiUrl, data);
   }
+
+  create(player: Player) {
+    return this.http.post<Player>(`${this.apiUrl}/${player.genre}/`, player);
+  }
 }
