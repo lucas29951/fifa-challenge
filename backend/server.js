@@ -4,6 +4,7 @@ const cors = require('cors');
 const { sequelizeFemale, sequelizeMale } = require('./config/database');
 const femalePlayerRoutes = require('./routes/femalePlayerRoutes');
 const malePlayerRoutes = require('./routes/malePlayerRoutes');
+const filterPlayerRoutes = require('./routes/filterPlayerRoutes');
 const authRoutes = require('./routes/authRoutes');
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(cors());
 
 app.use('/api/players/male', malePlayerRoutes);
 app.use('/api/players/female', femalePlayerRoutes);
+app.use('/api/players/filter', filterPlayerRoutes);
 app.use('/api/auth', authRoutes);
 
 sequelizeMale.authenticate()
