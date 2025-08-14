@@ -203,3 +203,15 @@ exports.searchPlayers = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+exports.deletePlayer = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const playerDeleted = await malePlayer.destroy({ where: { id } });
+    if (!playerDeleted) return res.status(404).json({ message: 'Player not found.' });
+
+    res.json({ message: 'Player deleted successfully!' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
