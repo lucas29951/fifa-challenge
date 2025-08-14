@@ -66,4 +66,8 @@ export class PlayerService {
   createPlayer(player: Player) {
     return this.http.post<Player>(`${this.apiUrl}/${player.genre}/`, player);
   }
+
+  searchPlayers(query: string, genero: string): Observable<Player[]> {
+    return this.http.get<Player[]>(`${this.apiUrl}/${genero}/search?name=${query}`);
+  }
 }
