@@ -13,5 +13,6 @@ router.get('/last-version', femalePlayerController.getPlayersByLastVersion);
 router.put('/:id', femalePlayerController.updateFemalePlayer);
 router.get('/highlights', femalePlayerController.getHighlightsPlayers);
 router.get('/filter', femalePlayerController.getPlayersFiltered);
+router.get('/search', femalePlayerController.searchPlayers);
 
 module.exports = router;
