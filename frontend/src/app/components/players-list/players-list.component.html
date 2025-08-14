@@ -1,65 +1,6 @@
 <app-filters (filtersChanged)="loadPlayers($event)"></app-filters>
 
 <h2 class="text-light mt-3 ms-4">Jugadores</h2>
-<!-- <div class="players-grid">
-  <div *ngFor="let player of players" class="card">
-    <div class="content">
-      <div class="back">
-        <div class="back-content">
-          <img [src]="player.player_face_url" alt="Foto de {{ player.long_name }}" />
-          <strong class="text-center fs-6 mx-1">{{ player.long_name }}</strong>
-        </div>
-      </div>
-      <div class="front">
-
-        <div class="img">
-          <div class="circle">
-          </div>
-          <div class="circle" id="right">
-          </div>
-          <div class="circle" id="bottom">
-          </div>
-        </div>
-
-        <div class="front-content">
-          <small class="badge">{{ player.club_name || 'NN' }}</small>
-          <div class="description">
-            <div class="title">
-              <p class="title">
-                <strong>{{ player.long_name }}</strong>
-              </p>
-            </div>
-            <p class="card-footer">
-              Age: {{ player.age }} &nbsp; | &nbsp; Nationality: {{ player.nationality_name }}
-            </p>
-          </div>
-          <a [routerLink]="['/player', player.genre, player.id]" class="btn">Ver detalles</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-<!-- <div class="players-grid">
-  <div *ngFor="let player of players" class="player-card">
-    <div class="player-img" [style.backgroundImage]="'url(' + player.player_face_url + ')'"></div>
-
-    <div class="player-info">
-      <h5 class="player-name">{{ player.long_name }}</h5>
-      <span class="player-position">{{ player.player_positions }}</span>
-      <p class="player-club">{{ player.club_name || 'Sin club' }}</p>
-      
-      <div class="stats">
-        <span class="ovr">OVR {{ player.overall }}</span>
-        <span class="age">{{ player.age }} años</span>
-      </div>
-
-      <button class="btn-details" [routerLink]="['/player', player.genre, player.id]">
-        Ver Detalles
-      </button>
-    </div>
-  </div>
-</div> -->
 
 <div class="players-grid">
   <div *ngFor="let player of players" class="player-card">

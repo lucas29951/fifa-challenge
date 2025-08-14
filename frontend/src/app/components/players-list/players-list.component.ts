@@ -27,13 +27,35 @@ export class PlayersListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.cargarJugadores();
+    this.route.queryParams.subscribe(params => {
+      const search = params['search'];
+
+      if (search) {
+        this.cargarJugadoresBuscados(search);
+      } else {
+        this.cargarJugadores();
+      }
+    });
   }
 
   cargarJugadores() {
     forkJoin({
       males: this.playerService.getMalePlayers(this.currentPage, this.limit),
       females: this.playerService.getFemalePlayers(this.currentPage, this.limit)
+    }).subscribe(({ males, females }) => {
+      this.players = [
+        ...males.map(player => ({ ...player, genre: 'male' })),
+        ...females.map(player => ({ ...player, genre: 'female' }))
+      ];
+      this.players.sort((a,b) => a.long_name.localeCompare(b.long_name));
+      this.totalPages = Math.ceil(this.players.length / this.limit);
+    });
+  }
+
+  cargarJugadoresBuscados(search: string) {
+    forkJoin({
+      males: this.playerService.searchPlayers(search, 'male'),
+      females: this.playerService.searchPlayers(search, 'female')
     }).subscribe(({ males, females }) => {
       this.players = [
         ...males.map(player => ({ ...player, genre: 'male' })),
