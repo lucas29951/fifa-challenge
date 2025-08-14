@@ -1,4 +1,5 @@
 const femalePlayer = require('../models/femalePlayer');
+const { Op, Sequelize } = require('sequelize');
 
 exports.createFemalePlayer = async (req, res) => {
   try {
@@ -176,6 +177,28 @@ exports.getPlayersFiltered = async (req, res) => {
       data: allPlayers
     });
 
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.searchPlayers = async (req, res) => {
+  try {
+    const { name } = req.query;
+
+    if (!name) {
+      return res.status(400).json({ message: 'Introduce name to search' });
+    }
+
+    const results = await femalePlayer.findAll({
+      where: {
+        long_name: {
+          [Op.like]: `%${name}%`
+        }
+      }
+    });
+
+    res.json(results);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

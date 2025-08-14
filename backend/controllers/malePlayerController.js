@@ -185,3 +185,24 @@ exports.getPlayersFiltered = async (req, res) => {
   }
 };
 
+exports.searchPlayers = async (req, res) => {
+  try {
+    const { name } = req.query;
+
+    if (!name) {
+      return res.status(400).json({ message: 'Introduce name to search' });
+    }
+
+    const results = await malePlayer.findAll({
+      where: {
+        long_name: {
+          [Op.like]: `%${name}%`
+        }
+      }
+    });
+
+    res.json(results);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
