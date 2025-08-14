@@ -52,7 +52,7 @@ export class PlayerCreateComponent {
         const nuevo = res;
         console.log("Nuevo: ", nuevo);
         if (nuevo && nuevo.id) {
-          this.router.navigate([`/players/${this.player.genre}/${nuevo.id}`]);
+          this.router.navigate([`/player/${this.player.genre}/${nuevo.id}`]);
         } else {
           this.router.navigate(['/players']);
         }
