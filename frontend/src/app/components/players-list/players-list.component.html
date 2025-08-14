@@ -1,7 +1,7 @@
 <app-filters (filtersChanged)="loadPlayers($event)"></app-filters>
 
-<h2>Jugadores</h2>
-<div class="players-grid">
+<h2 class="text-light mt-3 ms-4">Jugadores</h2>
+<!-- <div class="players-grid">
   <div *ngFor="let player of players" class="card">
     <div class="content">
       <div class="back">
@@ -38,7 +38,47 @@
       </div>
     </div>
   </div>
+</div> -->
+
+<!-- <div class="players-grid">
+  <div *ngFor="let player of players" class="player-card">
+    <div class="player-img" [style.backgroundImage]="'url(' + player.player_face_url + ')'"></div>
+
+    <div class="player-info">
+      <h5 class="player-name">{{ player.long_name }}</h5>
+      <span class="player-position">{{ player.player_positions }}</span>
+      <p class="player-club">{{ player.club_name || 'Sin club' }}</p>
+      
+      <div class="stats">
+        <span class="ovr">OVR {{ player.overall }}</span>
+        <span class="age">{{ player.age }} años</span>
+      </div>
+
+      <button class="btn-details" [routerLink]="['/player', player.genre, player.id]">
+        Ver Detalles
+      </button>
+    </div>
+  </div>
+</div> -->
+
+<div class="players-grid">
+  <div *ngFor="let player of players" class="player-card">
+    <div class="player-img" [style.backgroundImage]="'url(' + player.player_face_url + ')'"></div>
+    <div class="player-info">
+      <h5 class="player-name">{{ player.long_name }}</h5>
+      <span class="player-position">{{ player.player_positions }}</span>
+      <p class="player-club">{{ player.club_name || 'Sin club' }}</p>
+      <div class="stats">
+        <span class="ovr">OVR {{ player.overall }}</span>
+        <span class="age">{{ player.age }} años</span>
+      </div>
+      <button class="btn-details" [routerLink]="['/player', player.genre, player.id]">
+        Ver Detalles
+      </button>
+    </div>
+  </div>
 </div>
+
 
 <div class="pagination">
   <button class="btn btn-outline-light px-4 py-1" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">
