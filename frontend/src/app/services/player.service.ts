@@ -8,7 +8,6 @@ import { Player } from '../models/Player.model';
 })
 export class PlayerService {
   private apiUrl = 'http://localhost:3000/api/players';
-  private apiMale = 'http://localhost:3000/api/players/male';
 
   constructor(private http:HttpClient) { }
 
@@ -48,19 +47,13 @@ export class PlayerService {
     return this.http.get<Player[]>(`${url}/highlights`);
   }
 
-  getFilteredPlayers(filters: any) {
-    let params: any = {};
+  getFilteredPlayers(genre: string, position?: string, nationality?: string, club?: string) {
+    let params: any = { genre };
+    if (position) params.position = position;
+    if (nationality) params.nationality = nationality;
+    if (club) params.club = club;
 
-    if (filters.gender) params.gender = filters.gender;
-    if (filters.club) params.club = filters.club;
-    if (filters.country) params.country = filters.country;
-    if (filters.minOverall) params.minOverall = filters.minOverall;
-    if (filters.maxOverall) params.maxOverall = filters.maxOverall;
-    if (filters.position) params.position = filters.position;
-    if (filters.page) params.page = filters.page;
-    if (filters.limit) params.limit = filters.limit;
-
-    return this.http.get<Player[]>(`${this.apiUrl}/${filters.gender}/filter`, { params });
+    return this.http.get<any[]>(`${this.apiUrl}/filter`, { params });
   }
 
   createPlayer(player: Player) {
