@@ -14,5 +14,6 @@ router.put('/:id', malePlayerController.updateMalePlayer);
 router.get('/highlights', malePlayerController.getHighlightsPlayers);
 router.get('/filter', malePlayerController.getPlayersFiltered);
 router.get('/search', malePlayerController.searchPlayers);
+router.delete('/id/:id', malePlayerController.deletePlayer);
 
 module.exports = router;
