@@ -4,7 +4,6 @@
   min-height: 100vh;
 }
 
-/* Banner */
 .hero {
   background: linear-gradient(to right, #1e3c72, #2a5298);
   border-radius: 15px;
@@ -41,7 +40,6 @@
   background-color: #ffdb4d;
 }
 
-/* Accesos rápidos */
 .quick-links {
   margin-bottom: 2rem;
 }
@@ -63,6 +61,7 @@
   border-radius: 12px;
   cursor: pointer;
   transition: transform 0.3s, background 0.3s;
+  text-decoration: none;
 }
 
 .card:hover {
@@ -75,7 +74,6 @@
   margin-bottom: 0.5rem;
 }
 
-/* Jugadores destacados */
 .featured h2 {
   margin-bottom: 1rem;
 }

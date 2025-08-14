@@ -4,11 +4,12 @@ import { Player } from '../../models/Player.model';
 import { CommonModule } from '@angular/common';
 import { PlayerService } from '../../services/player.service';
 import { forkJoin } from 'rxjs';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
