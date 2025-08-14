@@ -46,7 +46,7 @@ export class PlayerCreateComponent {
     this.saving = true;
     this.error = null;
     console.log('Player: ', this.player);
-    this.playerService.create(this.player).subscribe({
+    this.playerService.createPlayer(this.player).subscribe({
       next: (res) => {
         this.saving = false;
         const nuevo = res;
