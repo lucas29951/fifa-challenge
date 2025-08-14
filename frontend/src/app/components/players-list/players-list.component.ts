@@ -19,7 +19,16 @@ export class PlayersListComponent implements OnInit {
   currentPage = 1;
   totalPages = 1;
   limit = 10;
-  currentFilters: any = {};
+  currentFilters: any = {
+    gender: '',
+    club: '',
+    country: '',
+    minOverall: '',
+    maxOverall: '',
+    position: '',
+    page: 1,
+    limit: 10
+  };
 
   constructor(
     private playerService: PlayerService, 
@@ -66,13 +75,20 @@ export class PlayersListComponent implements OnInit {
     });
   }
 
-  loadPlayers(filters?: any) {
-    if (filters) this.currentFilters = filters;
-    this.playerService.getFilteredPlayers(this.currentFilters).subscribe(res => {
-      this.players = [
-        ...res.map(player => ({ ...player, genre: 'male' }))
-      ];
-      //this.players.sort((a,b) => a.long_name.localeCompare(b.long_name));
+  onFiltersChanged(filters: any) {
+    this.currentFilters = { ...filters };
+
+    this.playerService.getFilteredPlayers(
+      this.currentFilters.gender,
+      this.currentFilters.position,
+      this.currentFilters.country,
+      this.currentFilters.club
+    ).subscribe(players => {
+      this.players = players.map(p => ({
+        ...p,
+        genre: p.genre || this.currentFilters.gender || 'unknown'
+      }));
+      this.players.sort((a, b) => a.long_name.localeCompare(b.long_name));
     });
   }
 
