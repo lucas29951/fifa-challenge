@@ -1,108 +1,95 @@
-h2 {
-    font-size: 2.4rem;
-    color: white;
-    margin: 0;
-}
-
-p {
-    font-size: 1rem;
-    color: white;
-    margin: 0;
-}
-
-.container {
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: 1fr 2fr 1fr;
-}
-
-.player-card {
-    grid-column: 2 / -2;
-    grid-row: 2 / -2;
-    border-radius: 20px;
-    display: grid;
-    grid-template-columns: 7fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    min-width: 400px;   
-    max-width: 600px;
-    min-height: 60vh; 
-    transition: 1s cubic-bezier(0.2, 0.8, 0.2, 1);
-    border: 1px solid white;
-}
-
-.player-card img {
-    max-width: 100%;
-}
-
-.player-card:hover {
-    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.25);
-    transform: translateY(-5px);
-    cursor:pointer;
-    transform: scale(1.1, 1.1);
+.player-detail-card {
+  background: linear-gradient(145deg, #1b1f27, #11141a);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
 .player-name {
-    grid-row: 7 / span 2;
-    grid-column: 1 / span 2; 
-    align-self: end;
-    padding: 0rem 0rem 1rem 1rem;
+  font-weight: bold;
+  font-size: 2rem;
+  letter-spacing: 1px;
 }
 
-.club {
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing:0.3rem;
-    opacity: 0.5;
-    writing-mode: vertical-rl;
-    color: white;
-    grid-column: 2;
-    grid-row: 1 / span 5;
-    padding: 1.4rem;
+.player-img-container {
+  background: rgba(255,255,255,0.05);
+  padding: 15px;
+  border-radius: 15px;
 }
 
-.position {
-    grid-row: 7 / span 2;
-    grid-column: 1 / span 2; 
-    opacity: 0.6;
-    align-self: end;
-    padding: 0rem 0rem 4rem 1.2rem;
+.player-img-container img {
+  max-height: 250px;
+  object-fit: contain;
 }
 
-.position p {
-        font-size: 1.2rem;
-        letter-spacing: 0.25rem;
-        color: white;
-        margin: 0;
+.position-badge {
+  background: gold;
+  color: #000;
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-weight: bold;
 }
 
-.number {
-    font-weight: 800;
-    padding: 0 1.4rem 0 1.4rem;
-    /* grid-column: 2; */
-    /* grid-row: 7 / span 2; */
-    /* align-self: end; */
+.club-name, .nation-name {
+  font-size: 0.95rem;
+  opacity: 0.85;
 }
 
-.number p {
-    font-size: 3rem;
-    margin: 0;
+.club-name i, .nation-name i {
+  margin-right: 5px;
 }
 
-.edit-btn {
-    margin: 20px 180%;
-    width: 100px;
-    height: fit-content;
-    background-color: rgba(255, 255, 255, 0.15);
-    color: white;
-    border: 1px solid white;
-    padding: 5px 12px;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: background 0.3s ease;
+.info-section {
+  background: rgba(255,255,255,0.05);
+  padding: 15px;
+  border-radius: 10px;
 }
 
-.edit-btn:hover {
-    background-color: rgba(255, 255, 255, 0.3);
+.info-section h4 {
+  font-size: 1.2rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  gap: 10px;
+}
+
+.stat-box {
+  background: #2c2f36;
+  padding: 10px;
+  text-align: center;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.stat-box span {
+  display: block;
+  font-size: 1.1rem;
+  margin-top: 3px;
+}
+
+.btn-edit {
+  background-color: gold;
+  color: #000;
+  font-weight: bold;
+}
+
+.btn-edit:hover {
+  background-color: #e0b800;
+  color: #000;
+}
+
+.btn-delete {
+  background-color: crimson;
+  color: white;
+  font-weight: bold;
+}
+
+.btn-delete:hover {
+  background-color: red;
 }

@@ -15,6 +15,8 @@ export class PlayerDetailComponent implements OnInit {
   player: any;
   genero!: string;
   id!: number;
+  loading = true;
+  error: string | null = null;
 
   constructor(
     private playerService: PlayerService, 
@@ -26,12 +28,23 @@ export class PlayerDetailComponent implements OnInit {
     this.id = +this.route.snapshot.paramMap.get('id')!;
     this.genero = this.route.snapshot.paramMap.get('genre') as 'male' | 'female';
 
-    this.playerService.getJugadorById(this.genero, this.id).subscribe(data => {
-      this.player = data;
+    this.playerService.getJugadorById(this.genero, this.id).subscribe({
+      next: (data) => {
+        this.player = data;
+        this.loading = false;
+      },
+      error: (err) => {
+        this.error = err?.error?.message || 'Error al cargar jugador';
+        this.loading = false;
+      }
     });
   }
 
   editarJugador(): void {
     this.router.navigate([`/player/${this.genero}/${this.id}/edit`]);
+  }
+
+  eliminar() {
+    
   }
 }
