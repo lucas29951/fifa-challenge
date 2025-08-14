@@ -70,4 +70,8 @@ export class PlayerService {
   searchPlayers(query: string, genero: string): Observable<Player[]> {
     return this.http.get<Player[]>(`${this.apiUrl}/${genero}/search?name=${query}`);
   }
+
+  deletePlayer(genero: string, id: string) {
+    return this.http.delete<any>(`${this.apiUrl}/${genero}/id/${id}`);
+  }
 }
