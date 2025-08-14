@@ -125,66 +125,6 @@ exports.getHighlightsPlayers = async (req, res) => {
   }
 };
 
-exports.getPlayersFiltered = async (req, res) => {
-  try {
-    const {
-      gender,
-      club,
-      country,
-      minOverall,
-      maxOverall,
-      position,
-      page = 1,
-      limit = 20
-    } = req.query;
-
-    const offset = (page - 1) * limit;
-
-    let models = [];
-    if (!gender || gender === 'male') models.push(malePlayer);
-
-    let allPlayers = [];
-
-    for (const Model of models) {
-      const where = {};
-
-      if (club) where.club_name = { [Op.like]: `%${club}%`};
-      if (country) where.nationality_name = { [Op.like]: `%${country}%` };
-      if (minOverall || maxOverall) {
-        where.overall = {};
-        if (minOverall) where.overall[Op.gte] = parseInt(minOverall);
-        if (maxOverall) where.overall[Op.gte] = parseInt(maxOverall);
-      }
-      if (position) where.player_positions = { [Op.like]: `%${position}%` };
-
-      // const { count, rows } = await Model.findAndCountAll({
-      const players = await Model.findAll({
-        where,
-        limit: parseInt(limit),
-        offset,
-        order: [['long_name', 'ASC']]
-      });
-
-      // allPlayers = [...allPlayers, ...rows];
-    }
-
-    //allPlayers.sort((a, b) => a.long_name.localCompare(b.long_name));
-
-    // res.json({
-    //   total: allPlayers.length,
-    //   page: parseInt(page),
-    //   limit: parseInt(limit),
-    //   totalPages: Math.ceil(allPlayers.length / limit),
-    //   data: allPlayers
-    // });
-
-    res.json(players);
-
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
 exports.searchPlayers = async (req, res) => {
   try {
     const { name } = req.query;
