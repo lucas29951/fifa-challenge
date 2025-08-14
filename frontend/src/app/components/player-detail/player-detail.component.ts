@@ -45,6 +45,16 @@ export class PlayerDetailComponent implements OnInit {
   }
 
   eliminar() {
-    
+    if (confirm(`¿Seguro que quiere eliminar a ${this.player?.long_name}?`)) {
+      this.playerService.deletePlayer(this.genero, this.id.toString()).subscribe({
+        next: () => {
+          alert('Jugador eliminado con exito!');
+          this.router.navigate(['/players']);
+        },
+        error: (err) => {
+          alert(err?.error?.message || 'Error al eliminar jugador');
+        }
+      });
+    }
   }
 }
