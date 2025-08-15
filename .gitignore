@@ -6,3 +6,4 @@
 /frontend/.env
 
 .env
+/node_modules
