@@ -3,11 +3,13 @@ import { PlayerService } from '../../services/player.service';
 import { Player } from '../../models/Player.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
+import { NgChartsModule } from 'ng2-charts';
 
 @Component({
   selector: 'app-player-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgChartsModule],
   templateUrl: './player-detail.component.html',
   styleUrl: './player-detail.component.css'
 })
@@ -17,6 +19,39 @@ export class PlayerDetailComponent implements OnInit {
   id!: number;
   loading = true;
   error: string | null = null;
+
+  radarChartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+    plugins: {
+      legend: { position: 'top', labels: { color: 'white' } }
+    },
+    scales: {
+      r: {
+        angleLines: { color: 'rgba(255,255,255,0.2)' },
+        grid: { color: 'rgba(255,255,255,0.2)' },
+        pointLabels: { color: 'white' },
+        suggestedMin: 0,
+        suggestedMax: 100
+      }
+    }
+  };
+
+  radarChartLabels: string[] = ['Pace', 'Shooting', 'Passing', 'Dribbling', 'Defending', 'Physical'];
+
+  radarChartData: ChartData<'radar'> = {
+    labels: this.radarChartLabels,
+    datasets: [
+      {
+        data: [],
+        label: 'Skills',
+        backgroundColor: 'rgba(102,191,255,0.4)',
+        borderColor: 'rgba(102,191,255,1)',
+        pointBackgroundColor: 'rgba(102,191,255,1)'
+      }
+    ]
+  };
+
+  radarChartType: ChartType = 'radar';
 
   constructor(
     private playerService: PlayerService, 
@@ -32,6 +67,15 @@ export class PlayerDetailComponent implements OnInit {
       next: (data) => {
         this.player = data;
         this.loading = false;
+
+        this.radarChartData.datasets[0].data = [
+          data.pace || 0,
+          data.shooting || 0,
+          data.passing || 0,
+          data.dribbling || 0,
+          data.defending || 0,
+          data.physic || 0
+        ];
       },
       error: (err) => {
         this.error = err?.error?.message || 'Error al cargar jugador';
