@@ -96,12 +96,9 @@ fifa-challenge/
 ├── backend/                 # Backend Node.js
 │   ├── config/              # Configuración de Sequelize
 │   ├── controllers/         # Controladores de rutas
-│   ├── migrations/          # Migraciones de Sequelize
 │   ├── models/              # Modelos de Sequelize
 │   ├── routes/              # Definición de rutas
-│   ├── seeders/             # Datos iniciales
-│   ├── app.js               # Configuración de Express
-│   ├── server.js            # Punto de entrada
+│   ├── server.js            # Punto de entrada y configuración de Express
 │   └── .env                 # Variables de entorno
 │
 ├── frontend/                # Frontend Angular
@@ -113,22 +110,22 @@ fifa-challenge/
 │   └── angular.json         # Configuración de Angular
 │
 ├── docker-compose.yml       # Configuración de Docker
-├── .gitignore              # Archivos ignorados por Git
-└── README.md               # Este archivo
+├── .gitignore               # Archivos ignorados por Git
+└── README.md                # Este archivo
 ```
 
 ## API Endpoints
 
 ### Jugadores
-- `GET /api/players` - Lista todos los jugadores
-- `GET /api/players/:id` - Obtiene un jugador por ID
-- `POST /api/players` - Crea un nuevo jugador
-- `PUT /api/players/:id` - Actualiza un jugador
-- `DELETE /api/players/:id` - Elimina un jugador
+- `GET /api/players/genre`           - Lista todos los jugadores
+- `GET /api/players/genre/id/:id`    - Obtiene un jugador por ID
+- `POST /api/players/genre`          - Crea un nuevo jugador
+- `PUT /api/players/genre/id/:id`    - Actualiza un jugador
+- `DELETE /api/players/genre/id/:id` - Elimina un jugador
 
 ### Autenticación
 - `POST /api/auth/register` - Registro de usuario
-- `POST /api/auth/login` - Inicio de sesión
+- `POST /api/auth/login`    - Inicio de sesión
 
 ## Variables de Entorno
 
@@ -154,8 +151,6 @@ JWT_EXPIRES_IN=24h
 
 ### Backend
 - **Sequelize** como ORM para interacción con MySQL
-- **Migraciones** para control de cambios en la base de datos
-- **Seeders** para datos iniciales
 - **JWT** para autenticación stateless
 
 ### Frontend
