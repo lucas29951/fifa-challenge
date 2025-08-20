@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const malePlayerController = require('../controllers/malePlayerController');
+const authMiddleware = require('../middleware/auth');
 
 /**
  * @swagger
@@ -30,7 +31,7 @@ const malePlayerController = require('../controllers/malePlayerController');
  *       200:
  *         description: Lista de jugadores masculinos
  */
-router.get('/', malePlayerController.getMalePlayers);
+router.get('/', authMiddleware, malePlayerController.getMalePlayers);
 
 /**
  * @swagger
@@ -49,7 +50,7 @@ router.get('/', malePlayerController.getMalePlayers);
  *       200:
  *         description: Datos del jugador
  */
-router.get('/id/:id', malePlayerController.getPlayerByID);
+router.get('/id/:id', authMiddleware, malePlayerController.getPlayerByID);
 
 /**
  * @swagger
@@ -74,7 +75,7 @@ router.get('/id/:id', malePlayerController.getPlayerByID);
  *       400:
  *         description: Error de validación
  */
-router.post('/', malePlayerController.createMalePlayer);
+router.post('/', authMiddleware, malePlayerController.createMalePlayer);
 
 /**
  * @swagger
@@ -95,7 +96,7 @@ router.post('/', malePlayerController.createMalePlayer);
  *       404:
  *         description: Jugador no encontrado
  */
-router.get('/name/:name', malePlayerController.getPlayerByName);
+router.get('/name/:name', authMiddleware, malePlayerController.getPlayerByName);
 
 /**
  * @swagger
@@ -114,7 +115,7 @@ router.get('/name/:name', malePlayerController.getPlayerByName);
  *       200:
  *         description: Lista de jugadores
  */
-router.get('/club/:club', malePlayerController.getPlayersByClub);
+router.get('/club/:club', authMiddleware, malePlayerController.getPlayersByClub);
 
 /**
  * @swagger
@@ -133,7 +134,7 @@ router.get('/club/:club', malePlayerController.getPlayersByClub);
  *       200:
  *         description: Lista de jugadores
  */
-router.get('/country/:country', malePlayerController.getPlayersByCountry);
+router.get('/country/:country', authMiddleware, malePlayerController.getPlayersByCountry);
 
 /**
  * @swagger
@@ -154,7 +155,7 @@ router.get('/country/:country', malePlayerController.getPlayersByCountry);
  *       200:
  *         description: Lista paginada de jugadores
  */
-router.get('/pagination', malePlayerController.getPlayersPaginated);
+router.get('/pagination', authMiddleware, malePlayerController.getPlayersPaginated);
 
 /**
  * @swagger
@@ -166,7 +167,7 @@ router.get('/pagination', malePlayerController.getPlayersPaginated);
  *       200:
  *         description: Lista de jugadores
  */
-router.get('/last-version', malePlayerController.getPlayersByLastVersion);
+router.get('/last-version', authMiddleware, malePlayerController.getPlayersByLastVersion);
 
 /**
  * @swagger
@@ -192,7 +193,7 @@ router.get('/last-version', malePlayerController.getPlayersByLastVersion);
  *       404:
  *         description: Jugador no encontrado
  */
-router.put('/:id', malePlayerController.updateMalePlayer);
+router.put('/:id', authMiddleware, malePlayerController.updateMalePlayer);
 
 /**
  * @swagger
@@ -204,7 +205,7 @@ router.put('/:id', malePlayerController.updateMalePlayer);
  *       200:
  *         description: Lista de jugadores destacados
  */
-router.get('/highlights', malePlayerController.getHighlightsPlayers);
+router.get('/highlights', authMiddleware, malePlayerController.getHighlightsPlayers);
 
 /**
  * @swagger
@@ -222,7 +223,7 @@ router.get('/highlights', malePlayerController.getHighlightsPlayers);
  *       200:
  *         description: Lista de jugadores encontrados
  */
-router.get('/search', malePlayerController.searchPlayers);
+router.get('/search', authMiddleware, malePlayerController.searchPlayers);
 
 /**
  * @swagger
@@ -242,6 +243,6 @@ router.get('/search', malePlayerController.searchPlayers);
  *       404:
  *         description: Jugador no encontrado
  */
-router.delete('/id/:id', malePlayerController.deletePlayer);
+router.delete('/id/:id', authMiddleware, malePlayerController.deletePlayer);
 
 module.exports = router;
