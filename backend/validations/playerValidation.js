@@ -48,3 +48,23 @@ exports.updatePlayerValidation = [
     .optional()
     .isLength({ max: 50 }).withMessage('Club name is too long'),
 ];
+
+exports.deletePlayerValidation = [
+    param('id').isInt().withMessage('ID should be a entire valid number')
+];
+
+exports.searchValidation = [
+    query('name')
+    .notEmpty().withMessage('Name parameter is required')
+    .length({ min: 2 }).withMessage('Name should be already 2 characters')
+];
+
+exports.filterValidation = [
+    query('club').optional().isString().withMessage('Club should be a text'),
+    query('country').optional().isString().withMessage('Country should be a text'),
+    query('position').optional().isString().withMessage('Position should be a text'),
+    query('minOverall').optional().isInt({ min: 0, max: 99}).withMessage('MinOverall should be already 0 to 99'),
+    query('maxOverall').optional().isInt({ min: 0, max: 99}).withMessage('MaxOverall should be already 0 to 99'),
+    query('page').optional().isInt({ min: 1 }).withMessage('Page should be a positive number'),
+    query('limit').optional().isInt({ min: 1, max: 100 }).withMessage('Limit should be already 1 to 100')
+];
