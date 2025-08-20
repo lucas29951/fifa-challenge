@@ -96,8 +96,10 @@ fifa-challenge/
 ├── backend/                 # Backend Node.js
 │   ├── config/              # Configuración de Sequelize
 │   ├── controllers/         # Controladores de rutas
+│   ├── middleware/          # Configuracion de controles
 │   ├── models/              # Modelos de Sequelize
 │   ├── routes/              # Definición de rutas
+│   ├── validations/         # Definición de validaciones
 │   ├── server.js            # Punto de entrada y configuración de Express
 │   └── .env                 # Variables de entorno
 │
