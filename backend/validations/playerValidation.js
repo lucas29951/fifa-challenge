@@ -28,3 +28,23 @@ exports.createPlayerValidation = [
     .notEmpty().withMessage('Genre is required')
     .isIn(['male', 'female']).withMessage('Genre should be male or female')
 ];
+
+exports.updatePlayerValidation = [
+    param('id').isInt().withMessage('ID should be a integer'),
+
+    body('long_name')
+    .optional()
+    .isLength({ min: 3 }).withMessage('Name should be already 3 characters'),
+
+    body('age')
+    .optional()
+    .isInt({ min: 15, max: 60 }).withMessage('Age should be 15 to 60'),
+
+    body('overall')
+    .optional()
+    .isInt({ min: 0, max: 99 }).withMessage('Overall should be 0 to 99'),
+
+    body('club_name')
+    .optional()
+    .isLength({ max: 50 }).withMessage('Club name is too long'),
+];
