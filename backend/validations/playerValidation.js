@@ -56,7 +56,7 @@ exports.deletePlayerValidation = [
 exports.searchValidation = [
     query('name')
     .notEmpty().withMessage('Name parameter is required')
-    .length({ min: 2 }).withMessage('Name should be already 2 characters')
+    .isLength({ min: 2 }).withMessage('Name should be already 2 characters')
 ];
 
 exports.filterValidation = [
