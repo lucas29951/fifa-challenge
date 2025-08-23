@@ -2,6 +2,14 @@ const express = require('express');
 const router = express.Router();
 const malePlayerController = require('../controllers/malePlayerController');
 const authMiddleware = require('../middleware/auth');
+const validateRequest = require('../middleware/validateRequest');
+const {
+    createPlayerValidation,
+    updatePlayerValidation,
+    deletePlayerValidation,
+    searchValidation,
+    filterValidation
+} = require('../validations/playerValidation');
 
 /**
  * @swagger
@@ -75,7 +83,7 @@ router.get('/id/:id', authMiddleware, malePlayerController.getPlayerByID);
  *       400:
  *         description: Error de validación
  */
-router.post('/', authMiddleware, malePlayerController.createMalePlayer);
+router.post('/', authMiddleware, createPlayerValidation, validateRequest, malePlayerController.createMalePlayer);
 
 /**
  * @swagger
